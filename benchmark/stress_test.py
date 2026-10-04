@@ -8,14 +8,14 @@ Compares surrogate models / optimisers for the settings-search problem.
 IMPORTANT: by default it runs on a SYNTHETIC frame-time simulator defined below.
 Results from that mode say how the methods behave on our toy model, NOT how they
 behave in real games. Nothing from synthetic mode is published on the website.
-Validation step V3 (roadmap) replaces the simulator with recorded real sweeps (--data).
+Validation step V3 replaces the simulator with recorded real sweeps (--data).
 
 Usage
 -----
     pip install tabpfn scikit-learn xgboost catboost optuna scipy numpy pandas
     python benchmark/stress_test.py --quick                     # smoke run, synthetic
     python benchmark/stress_test.py --seeds 10                  # full synthetic run
-    python benchmark/stress_test.py --data sweeps.csv           # (V3, not implemented yet)
+    python benchmark/stress_test.py --data sweeps.csv           # (V3 recorded sweeps)
 
 Real data format (--data): one row per benchmark run with columns
     task_id, <setting columns...>, <hardware columns...>, fps_avg, fps_p1_low, quality, vram_peak_gb
