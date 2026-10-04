@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>FrameForge preview — home</title><link rel="stylesheet" href="../ui/app.css"></head>
+<body>
+<div class="shell">
+  <aside class="sidebar"><div class="brand"><span class="brand-mark">FF</span><span class="brand-name">FrameForge</span></div>
+    <nav class="nav" id="nav">
+      <button class="nav-item active" data-view="home">My games</button>
+      <button class="nav-item" data-view="history">Past results</button>
+      <button class="nav-item" data-view="settings">Settings</button>
+      <button class="nav-item" data-view="help">Help</button>
+      <button class="nav-item hidden" data-view="live" id="nav-live">Testing now</button>
+    </nav>
+    <div class="sidebar-foot"><div class="offline-pill">Works offline</div><div style="margin-top:6px">Nothing leaves your PC.</div><div class="dim" id="app-version"></div></div>
+  </aside>
+  <main class="main" id="main" tabindex="-1"></main>
+</div>
+<div id="overlay-root"></div>
+<script>window.__FF_SCREEN__ = "result";</script>
+<script src="../ui/mock.js"></script>
+<script src="../ui/ui.js"></script>
+</body></html>

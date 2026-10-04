@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "FrameForge main window. Only core events/IPC — no shell, no HTTP, no file-system plugin exposed to the UI.",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}
