@@ -1,0 +1,49 @@
+# Rust / Cargo build artifacts
+/target/
+app/src-tauri/target/
+**/target/
+**/*.rs.bk
+
+# Tauri generated schemas
+**/src-tauri/gen/schemas/
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+.venv/
+env/
+.env
+
+# Operating System files
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
