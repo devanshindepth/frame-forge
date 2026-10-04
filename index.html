@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FrameForge — find the fastest graphics settings for your own PC, offline</title>
+  <meta name="description" content="FrameForge is a free Windows desktop app that measures your real frame rate while you play, tries graphics settings for you, and finds the fastest combination that still looks the way you want. Runs entirely on your PC.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <nav class="container nav-bar" aria-label="Main">
+    <a href="index.html" class="brand"><span class="brand-mark">FF</span>FrameForge</a>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    <div class="nav-links" id="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#benefits">What you get</a>
+      <a href="#safety">Safety</a>
+      <a href="#why-ai">Why TabPFN</a>
+      <a href="#status">Status</a>
+      <a href="#faq">FAQ</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="#get" class="btn btn-primary btn-sm">Get FrameForge</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="hero-section">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Desktop app for Windows · runs offline</span>
+        <h1>Stop guessing graphics settings. <span class="crimson">Measure them.</span></h1>
+        <p class="lead">FrameForge tries different graphics settings in your game, counts your real frame rate each time, and shows you the fastest combination that still looks the way you want. It all happens on your own PC. No account, no internet, nothing uploaded.</p>
+        <div class="hero-actions">
+          <a href="#get" class="btn btn-primary btn-lg">Get FrameForge</a>
+          <a href="#how" class="btn btn-lg">See how it works</a>
+        </div>
+        <div class="hero-meta"><span>Free</span><span>Windows 10 / 11</span><span>Your settings backed up first</span></div>
+      </div>
+      <figure class="window" style="margin:0" aria-label="Illustration of the FrameForge result screen">
+        <div class="window-bar"><span>FrameForge</span><span class="ctl">—&nbsp;&nbsp;☐&nbsp;&nbsp;✕</span></div>
+        <div class="window-body">
+          <div class="window-side"><div class="on">My games</div><div>Past results</div><div>Settings</div><div>Help</div></div>
+          <div class="window-main">
+            <div class="w-phase">Result · measured twice</div>
+            <div class="w-title">Your game</div>
+            <div class="w-detail">Picture quality you chose: at least 85%</div>
+            <div class="w-compare">
+              <div><div class="k">Before</div><div class="v">— FPS</div></div>
+              <div class="arrow">→</div>
+              <div class="after"><div class="k">After</div><div class="v" style="color:#fff">— FPS</div></div>
+            </div>
+            <div class="w-rows">
+              <div><span>Shadows</span><span class="b">Epic</span><span class="a">High</span></div>
+              <div><span>Grass &amp; plants</span><span class="b">Epic</span><span class="a">Medium</span></div>
+              <div><span>Indirect lighting</span><span class="b">High</span><span class="a">Medium</span></div>
+            </div>
+            <span class="w-btn">Use these settings</span>
+          </div>
+        </div>
+        <figcaption class="w-caption">Layout of the real result screen. The numbers are left blank on purpose: they only exist once you've measured on your PC.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section-tight section-alt" id="problem">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">The problem</span>
+        <h2>"Ultra", "High", "Medium" don't know your PC</h2>
+        <p class="lead">A modern game has 10–20 graphics settings, each with 3–5 levels. That's hundreds of thousands of possible combinations. How much each one costs depends on your graphics card, your processor and the part of the game you're in. Presets ignore all of that, and testing by hand takes evenings.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card"><h3>Some settings cost a lot, some almost nothing</h3><p>Lowering a setting that's cheap on your PC makes the game uglier and no faster. You can only tell which ones matter by measuring.</p></div>
+        <div class="card"><h3>Your eyes aren't a frame counter</h3><p>A 10% difference is hard to feel in one try, and every test run differs a little. Comparing settings fairly takes careful, repeated measuring.</p></div>
+        <div class="card"><h3>Online guides are for someone else's PC</h3><p>"Best settings" videos are measured on the creator's hardware, in their scene, on that week's game version.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>Four steps. You just play.</h2>
+        <p class="lead">FrameForge does the changing, launching, measuring and comparing. You go to the same spot in the game and press F9 each time.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="n">1</span><h3>Pick a game and a goal</h3><p>Smoothest, Balanced or Best looking. Then use a slider to set how much picture quality must be kept.</p></div>
+        <div class="step"><span class="n">2</span><h3>Play a minute, press F9</h3><p>FrameForge starts the game. You go to a busy spot and press F9. It counts frames for 40–90 seconds (you choose).</p></div>
+        <div class="step"><span class="n">3</span><h3>It picks the next test</h3><p>The game closes, the Smart Tuner chooses the next settings to try, and the game restarts. Up to 8, 12 or 20 tests (you choose). It stops early when it expects no further gain.</p></div>
+        <div class="step"><span class="n">4</span><h3>Check, then decide</h3><p>The winner and your original settings are both measured once more. You see before/after numbers and every changed setting. You choose whether to use them.</p></div>
+      </div>
+      <p class="dim small" style="margin-top:16px">Each test takes about a minute of play plus however long the game takes to load. Plan on 15–30 minutes for a full session. You can stop at any time and your original settings come back.</p>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="section-alt" id="benefits">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">What you get</span>
+        <h2>Answers about your PC, not someone else's</h2>
+      </div>
+      <div class="benefit">
+        <div>
+          <h3>Only the settings that matter on your PC get lowered</h3>
+          <p class="muted">FrameForge measures what each change actually does on your hardware, in your scene. Settings that cost you nothing stay high.</p>
+          <ul>
+            <li>You set a minimum picture quality. Settings below it are never chosen.</li>
+            <li>The result lists every setting that changed, before and after, with a plain-language explanation.</li>
+            <li>If your settings are already the fastest for your chosen quality, FrameForge says so and changes nothing.</li>
+          </ul>
+        </div>
+        <div class="benefit-visual list-box" style="padding:0">
+          <div><span class="ic">1</span><p><b>Average frame rate</b><span>How many frames per second on average, measured with Intel PresentMon.</span></p></div>
+          <div><span class="ic">2</span><p><b>Slowest 1% of frames</b><span>The moments you feel as stutter. Shown next to the average, because a high average can hide hitches.</span></p></div>
+          <div><span class="ic">3</span><p><b>Measured twice</b><span>Final numbers average two runs. A gain smaller than the difference between two runs of the same settings isn't reported as a gain.</span></p></div>
+        </div>
+      </div>
+      <div class="benefit">
+        <div>
+          <h3>Fewer tests than trying settings one by one</h3>
+          <p class="muted">Trying every combination is impossible, and changing one setting at a time misses how settings affect each other. The Smart Tuner learns from each test you play and picks the next one where it expects the most gain.</p>
+          <ul>
+            <li>Runs on your PC using TabPFN, an AI model built to learn from very small data tables.</li>
+            <li>Uses the uncertainty of its predictions, so it tests settings that are both promising and informative.</li>
+            <li>If the AI part can't start, a simpler built-in tuner takes over so your session isn't lost.</li>
+          </ul>
+        </div>
+        <div class="benefit-visual">
+          <p class="eyebrow" style="margin-bottom:10px">What the Smart Tuner tells you between tests</p>
+          <p style="font-size:17px;margin:0">"The Smart Tuner thinks this could reach about <b>N</b> FPS (<b>P%</b> chance it beats your best so far)."</p>
+          <p class="dim small" style="margin-top:12px">This is a prediction used only to choose the next test. The numbers on your final result are measured, never predicted.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFETY -->
+  <section id="safety">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Safety</span>
+        <h2>Your games and your PC come first</h2>
+        <p class="lead">These are the protections built into the app's code, and their limits.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card card-accent"><h3>Backup before any change</h3><p>The game's settings file is copied before anything else happens. Your original settings are put back after every session, whether it finishes, you stop it, or it fails.</p><p>If FrameForge or your PC shuts down mid-test, the original file is restored the next time FrameForge starts.</p></div>
+        <div class="card card-accent"><h3>Checks that changes really applied</h3><p>After each test FrameForge reads the settings file again. If the game put any value back, that test isn't counted. If it happens twice in a row, the session stops instead of showing you misleading results.</p></div>
+        <div class="card card-accent"><h3>Temperature watch</h3><p>On NVIDIA graphics cards the temperature is read every 2 seconds and a test stops above your limit (80, 87 or 92 °C). AMD and Intel cards aren't read yet. Their own built-in protection still applies, and the app tells you when the watch isn't available.</p></div>
+        <div class="card card-accent"><h3>Doesn't touch the running game</h3><p>Frames are counted with Intel's open-source PresentMon, which reads timing events from Windows (Event Tracing for Windows). FrameForge injects nothing into the game and doesn't read its memory. The only thing it changes is the same settings file the game's own menu writes.</p></div>
+        <div class="card card-accent"><h3>Play offline while testing</h3><p>We can't promise how every anti-cheat system reacts. The app tells you to test only in offline, practice or workshop modes, never in ranked or online matches.</p></div>
+        <div class="card card-accent"><h3>F9 only when needed</h3><p>Many games use F9 for quick-save. FrameForge only listens for F9 while it's waiting for you to start a test, and releases it straight after.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCAL -->
+  <section class="section-alt" id="local">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">100% local</span>
+        <h2>Everything stays on your PC</h2>
+        <p class="lead">FrameForge is a desktop app, not a website. All the parts it needs come inside the installer.</p>
+      </div>
+      <div class="local-box">
+        <span class="tag">YOUR PC</span>
+        <div class="local-items">
+          <div><b>FrameForge app</b><span>Built with Tauri (Rust). The interface uses no web fonts or online scripts.</span></div>
+          <div><b>Smart Tuner</b><span>TabPFN plus a small Python runtime, packed into the installer with the model file. Network access is blocked inside it.</span></div>
+          <div><b>PresentMon</b><span>Intel's frame-timing tool (MIT licence), included in the installer.</span></div>
+          <div><b>Settings backups</b><span>Copies of your game's settings files, in your Windows user folder.</span></div>
+          <div><b>Results</b><span>One file on your PC. You can delete all results in Settings.</span></div>
+          <div><b>Logs</b><span>A plain text file, for troubleshooting. Open it from Settings.</span></div>
+        </div>
+        <div class="no-cloud"><span>No account</span><span>No cloud service</span><span>No analytics</span><span>No uploads</span><span>No internet needed after install</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY TABPFN -->
+  <section id="why-ai">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Why TabPFN</span>
+        <h2>The right kind of AI for a handful of measurements</h2>
+        <p class="lead">One session yields 8–20 measurements, each a small table row: settings in, frame rate out. Most machine-learning methods need far more data than that. TabPFN was designed for exactly this case.</p>
+      </div>
+      <div class="grid-2" style="margin-bottom:28px">
+        <blockquote class="quote">
+          <p>TabPFN is a transformer pre-trained on millions of synthetic data tables. It makes predictions for a new table in a single pass, with no training or tuning per dataset.</p>
+          <cite>Hollmann et al., "Accurate predictions on small data with a tabular foundation model", <em>Nature</em> 637, 2025.</cite>
+        </blockquote>
+        <blockquote class="quote">
+          <p>On benchmark datasets of up to 10,000 rows, the authors report TabPFN outperforming strong baselines, including gradient-boosted trees tuned for hours, while taking seconds.</p>
+          <cite>Same paper. These are the authors' general benchmarks, <strong>not game measurements</strong>.</cite>
+        </blockquote>
+      </div>
+      <h3>How it compares for this specific job</h3>
+      <p class="muted" style="margin-bottom:16px">These are properties of each method, not benchmark scores. Whether TabPFN finds better settings in fewer tests <em>for games</em> still has to be measured. See <a href="#status">Status</a>.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Method</th><th>Built for tiny data</th><th>Gives uncertainty (needed to pick the next test)</th><th>Tuning needed per game</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="ours"><td class="name">TabPFN (our choice)</td><td class="yes">Yes</td><td class="yes">Yes, full predictive distribution</td><td class="yes">None</td><td>Heavier to run than trees. The installer gets bigger (Python and model bundled).</td></tr>
+            <tr><td class="name">Gaussian process</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="part">Kernel and noise choices</td><td>Classic for expensive tests. Handles on/off and Low/High settings less naturally.</td></tr>
+            <tr><td class="name">XGBoost / LightGBM / CatBoost</td><td class="no">No</td><td class="part">Only with add-ons (bootstrap, quantiles)</td><td class="part">Usually yes</td><td>Excellent with thousands of rows. Prone to overfitting with ten.</td></tr>
+            <tr><td class="name">Random-forest optimizer (SMAC)</td><td class="part">Moderate</td><td class="part">Approximate (tree spread)</td><td class="yes">Little</td><td>Proven in AutoML. A reasonable fallback.</td></tr>
+            <tr><td class="name">TPE (Optuna, Hyperopt)</td><td class="part">Moderate</td><td class="no">No predictive model</td><td class="yes">Little</td><td>Simple and robust. Can't answer "how fast would this be?"</td></tr>
+            <tr><td class="name">Random or one-at-a-time search</td><td class="no">—</td><td class="no">No</td><td class="yes">None</td><td>No learning between tests. Needs many more tests.</td></tr>
+            <tr><td class="name">Presets / auto-detect</td><td class="no">—</td><td class="no">No</td><td class="yes">None</td><td>Instant, but based on hardware class, not measured in your scene.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATUS -->
+  <section class="section-alt" id="status">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Honest status</span>
+        <h2>What is built, and what is not proven yet</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Built (source code in this project)</h3>
+          <p>Tauri desktop app with the full flow: hardware detection, Steam game detection, settings backup and restore, crash recovery, PresentMon frame counting, NVIDIA temperature watch, per-test check that settings applied, Smart Tuner (TabPFN) with built-in fallback, two-run confirmation, results history.</p>
+          <p>Game support files for <b>Counter-Strike 2</b> and <b>Palworld</b>, marked as early support in the app.</p>
+        </div>
+        <div class="card">
+          <h3>Not proven yet</h3>
+          <p>The app has <b>not yet been compiled and tested on real gaming PCs</b>. We have no measured frame-rate gains to show yet, so this page doesn't show any.</p>
+          <p>The game support files have not been confirmed against current game versions. The app checks this itself and stops if the game ignores a change.</p>
+          <p>We haven't yet run a head-to-head test showing TabPFN needs fewer tests than the alternatives <em>in games</em>. The protocol and harness are in <code>benchmark/stress_test.py</code>. Its output is synthetic until real-game data exists.</p>
+        </div>
+      </div>
+      <div class="status-box" style="margin-top:20px">
+        <p><b>Our rule:</b> no performance number will appear on this page until it was measured on real hardware and the method and raw data are published alongside it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUIREMENTS -->
+  <section class="section-tight" id="requirements">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">Requirements</span><h2>What you need</h2></div>
+      <div class="req">
+        <div><h3>To use FrameForge</h3>
+          <dl>
+            <dt>System</dt><dd>Windows 10 or 11, 64-bit</dd>
+            <dt>Games</dt><dd>Steam versions of supported games</dd>
+            <dt>Permission</dt><dd>The installer adds you to Windows' built-in "Performance Log Users" group, which PresentMon needs to count frames. Restart once after installing.</dd>
+            <dt>Disk space</dt><dd>Roughly 1 GB, mostly the bundled AI runtime (exact size known after the first release build)</dd>
+            <dt>Internet</dt><dd>Only to download the installer</dd>
+          </dl></div>
+        <div><h3>Good to know</h3>
+          <dl>
+            <dt>Temperature watch</dt><dd>NVIDIA cards only for now</dd>
+            <dt>Best results</dt><dd>When your graphics card limits your frame rate. If your processor is the limit, graphics settings change little, and FrameForge will show that.</dd>
+            <dt>Picture quality %</dt><dd>An estimate from how much each setting typically affects the image. It isn't measured from your screen.</dd>
+          </dl></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">FAQ</span><h2>Questions</h2></div>
+      <div class="faq">
+        <details><summary>Will it make my games faster?</summary><p>It finds the fastest combination of the game's own settings that meets the picture quality you chose, on your PC. How much faster depends on your hardware and game. If your settings are already about as fast as possible, or your processor is the limit, the result will say so and recommend no change.</p></details>
+        <details><summary>Can my game or my settings get damaged?</summary><p>The settings file is backed up before anything changes, and the original is restored after every session, including after a stop or a crash. "Put my original settings back" restores the copy from your very first session with that game, at any time.</p></details>
+        <details><summary>Can I get banned?</summary><p>FrameForge doesn't inject into or read the game's memory. It edits the normal settings file and counts frames through Windows Event Tracing. We can't guarantee how every anti-cheat behaves, so test only in offline or practice modes.</p></details>
+        <details><summary>Does it send my data anywhere?</summary><p>No. There is no account, no server and no analytics. The AI model runs on your PC, with network access blocked inside it.</p></details>
+        <details><summary>Why not just use my graphics driver's "optimize" button?</summary><p>Driver tools pick settings from your hardware model, which is quick and convenient. FrameForge instead measures your PC in the scene you choose. Use whichever suits you. FrameForge can also tell you whether its result beats what you have now.</p></details>
+        <details><summary>Which games are supported?</summary><p>Counter-Strike 2 and Palworld (Steam) in early support. Each game needs a small support file describing its settings, so more can be added without changing the app.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET -->
+  <section class="section-tight" id="get">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>Get FrameForge</h2>
+          <p class="muted">There is no signed installer to download yet. The complete source and an automated Windows build are in the project. The first public installer will be released after testing on real hardware (see the roadmap).</p>
+        </div>
+        <div class="cta-actions">
+          <a href="roadmap.html#build" class="btn btn-primary btn-lg">Build it from source</a>
+          <a href="roadmap.html" class="btn">Read the roadmap</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" id="sources">
+    <div class="container">
+      <h3>Sources</h3>
+      <ol class="sources">
+        <li>N. Hollmann, S. Müller, L. Purucker, et al. "Accurate predictions on small data with a tabular foundation model." <em>Nature</em> 637, 319–326 (2025). doi:10.1038/s41586-024-08328-6</li>
+        <li>PresentMon, Intel GameTechDev, MIT licence: github.com/GameTechDev/PresentMon</li>
+        <li>Tauri 2 application framework: v2.tauri.app</li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <span>FrameForge · Windows desktop app · runs offline</span>
+    <span>TabPFN by Prior Labs · PresentMon by Intel · <a href="roadmap.html">Technical roadmap</a></span>
+  </div>
+</footer>
+<script src="js/site.js"></script>
+</body>
+</html>
