@@ -203,37 +203,6 @@ tr.ours td.name { color: #fff; }
 .sources { font-size: 13.5px; color: var(--muted); padding-left: 20px; margin: 0; }
 .sources li { margin: 6px 0; }
 
-/* roadmap */
-.arch { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); }
-.arch-col { padding: 18px; border-right: 1px solid var(--line); background: var(--surface); }
-.arch-col:last-child { border-right: 0; }
-.arch-col > h4 { font: 700 12px var(--mono); color: var(--crimson); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
-.arch-box { border: 1px solid var(--line); background: var(--bg); padding: 12px 14px; margin-bottom: 10px; }
-.arch-box:last-child { margin-bottom: 0; }
-.arch-box strong { display: block; font-size: 14.5px; }
-.arch-box span { font-size: 13px; color: var(--muted); }
-.arch-box code { font-size: 11.5px; }
-.flow { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--line); counter-reset: f; }
-.flow > div { padding: 20px; border-right: 1px solid var(--line); background: var(--surface); counter-increment: f; }
-.flow > div:last-child { border-right: 0; }
-.flow > div::before { content: "0" counter(f); display: block; font: 800 12px var(--mono); color: var(--crimson); margin-bottom: 10px; }
-.flow h4 { font-size: 16px; margin-bottom: 6px; }
-.flow p { font-size: 13.5px; color: var(--muted); margin: 0; }
-.timeline { border-left: 2px solid var(--crimson); padding-left: 28px; }
-.phase { position: relative; margin-bottom: 22px; }
-.phase::before { content: ""; position: absolute; left: -36px; top: 28px; width: 14px; height: 14px; background: var(--crimson); }
-.phase-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.phase-head .when { font: 600 12.5px var(--mono); color: var(--crimson); }
-.phase ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 14.5px; }
-.phase ul li { margin: 4px 0; }
-.phase .exit { margin-top: 12px; font-size: 13.5px; padding: 10px 12px; background: var(--bg); border: 1px solid var(--line); }
-.phase .exit b { color: var(--crimson); font: 700 12px var(--mono); margin-right: 6px; }
-pre.code { background: #08080a; border: 1px solid var(--line); padding: 18px; overflow-x: auto; font: 13px/1.65 var(--mono); color: #d4d4dc; margin: 0; }
-.toc { display: flex; flex-wrap: wrap; margin-top: 26px; border: 1px solid var(--line); width: fit-content; max-width: 100%; }
-.toc a { font: 600 12.5px var(--mono); padding: 9px 12px; color: var(--muted); text-decoration: none; border-right: 1px solid var(--line); }
-.toc a:last-child { border-right: 0; }
-.toc a:hover { color: #fff; background: var(--crimson); }
-
 @media (max-width: 1000px) {
   .hero-grid, .benefit, .cta, .req { grid-template-columns: 1fr; }
   .req > div:first-child { border-right: 0; border-bottom: 1px solid var(--line); }
@@ -241,18 +210,14 @@ pre.code { background: #08080a; border: 1px solid var(--line); padding: 18px; ov
   .step:nth-child(2), .strip > div:nth-child(2) { border-right: 0; }
   .step:nth-child(-n+2), .strip > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
   .grid-3 { grid-template-columns: 1fr 1fr; }
-  .flow { grid-template-columns: 1fr 1fr; }
-  .flow > div { border-bottom: 1px solid var(--line); }
-  .arch { grid-template-columns: 1fr; }
-  .arch-col { border-right: 0; border-bottom: 1px solid var(--line); }
 }
 @media (max-width: 680px) {
   section { padding: 60px 0; }
   .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; background: var(--bg); padding: 16px 24px; border-bottom: 1px solid var(--line); align-items: flex-start; }
   .nav-links.open { display: flex; }
   .nav-toggle { display: block; }
-  .grid-2, .grid-3, .steps, .strip, .flow, .local-items { grid-template-columns: 1fr; }
-  .step, .strip > div, .flow > div { border-right: 0 !important; border-bottom: 1px solid var(--line); }
+  .grid-2, .grid-3, .steps, .strip, .local-items { grid-template-columns: 1fr; }
+  .step, .strip > div { border-right: 0 !important; border-bottom: 1px solid var(--line); }
   .window-body { grid-template-columns: 1fr; }
   .window-side { display: none; }
   .cta { padding: 28px 20px; }
