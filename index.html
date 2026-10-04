@@ -185,42 +185,7 @@
     </div>
   </section>
 
-  <!-- WHY TABPFN -->
-  <section id="why-ai">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Why TabPFN</span>
-        <h2>The right kind of AI for a handful of measurements</h2>
-        <p class="lead">One session yields 8–20 measurements, each a small table row: settings in, frame rate out. Most machine-learning methods need far more data than that. TabPFN was designed for exactly this case.</p>
-      </div>
-      <div class="grid-2" style="margin-bottom:28px">
-        <blockquote class="quote">
-          <p>TabPFN is a transformer pre-trained on millions of synthetic data tables. It makes predictions for a new table in a single pass, with no training or tuning per dataset.</p>
-          <cite>Hollmann et al., "Accurate predictions on small data with a tabular foundation model", <em>Nature</em> 637, 2025.</cite>
-        </blockquote>
-        <blockquote class="quote">
-          <p>On benchmark datasets of up to 10,000 rows, the authors report TabPFN outperforming strong baselines, including gradient-boosted trees tuned for hours, while taking seconds.</p>
-          <cite>Same paper. These are the authors' general benchmarks, <strong>not game measurements</strong>.</cite>
-        </blockquote>
-      </div>
-      <h3>How it compares for this specific job</h3>
-      <p class="muted" style="margin-bottom:16px">These are properties of each method, not benchmark scores. Whether TabPFN finds better settings in fewer tests <em>for games</em> still has to be measured. See <a href="#status">Status</a>.</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Method</th><th>Built for tiny data</th><th>Gives uncertainty (needed to pick the next test)</th><th>Tuning needed per game</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr class="ours"><td class="name">TabPFN (our choice)</td><td class="yes">Yes</td><td class="yes">Yes, full predictive distribution</td><td class="yes">None</td><td>Heavier to run than trees. The installer gets bigger (Python and model bundled).</td></tr>
-            <tr><td class="name">Gaussian process</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="part">Kernel and noise choices</td><td>Classic for expensive tests. Handles on/off and Low/High settings less naturally.</td></tr>
-            <tr><td class="name">XGBoost / LightGBM / CatBoost</td><td class="no">No</td><td class="part">Only with add-ons (bootstrap, quantiles)</td><td class="part">Usually yes</td><td>Excellent with thousands of rows. Prone to overfitting with ten.</td></tr>
-            <tr><td class="name">Random-forest optimizer (SMAC)</td><td class="part">Moderate</td><td class="part">Approximate (tree spread)</td><td class="yes">Little</td><td>Proven in AutoML. A reasonable fallback.</td></tr>
-            <tr><td class="name">TPE (Optuna, Hyperopt)</td><td class="part">Moderate</td><td class="no">No predictive model</td><td class="yes">Little</td><td>Simple and robust. Can't answer "how fast would this be?"</td></tr>
-            <tr><td class="name">Random or one-at-a-time search</td><td class="no">—</td><td class="no">No</td><td class="yes">None</td><td>No learning between tests. Needs many more tests.</td></tr>
-            <tr><td class="name">Presets / auto-detect</td><td class="no">—</td><td class="no">No</td><td class="yes">None</td><td>Instant, but based on hardware class, not measured in your scene.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
+
 
 
   <!-- REQUIREMENTS -->
