@@ -1,0 +1,9 @@
+# Offline AI engine. Built once on the release machine, never installed on player PCs.
+tabpfn==2.0.9
+numpy>=1.26,<3
+scipy>=1.11
+# CPU-only torch keeps the installer small (~260 MB smaller). CUDA is optional:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.3
+pyinstaller>=6.6
