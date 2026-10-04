@@ -222,31 +222,6 @@
     </div>
   </section>
 
-  <!-- STATUS -->
-  <section class="section-alt" id="status">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Honest status</span>
-        <h2>What is built, and what is not proven yet</h2>
-      </div>
-      <div class="grid-2">
-        <div class="card">
-          <h3>Built (source code in this project)</h3>
-          <p>Tauri desktop app with the full flow: hardware detection, Steam game detection, settings backup and restore, crash recovery, PresentMon frame counting, NVIDIA temperature watch, per-test check that settings applied, Smart Tuner (TabPFN) with built-in fallback, two-run confirmation, results history.</p>
-          <p>Game support files for <b>Counter-Strike 2</b> and <b>Palworld</b>, marked as early support in the app.</p>
-        </div>
-        <div class="card">
-          <h3>Not proven yet</h3>
-          <p>The app has <b>not yet been compiled and tested on real gaming PCs</b>. We have no measured frame-rate gains to show yet, so this page doesn't show any.</p>
-          <p>The game support files have not been confirmed against current game versions. The app checks this itself and stops if the game ignores a change.</p>
-          <p>We haven't yet run a head-to-head test showing TabPFN needs fewer tests than the alternatives <em>in games</em>. The protocol and harness are in <code>benchmark/stress_test.py</code>. Its output is synthetic until real-game data exists.</p>
-        </div>
-      </div>
-      <div class="status-box" style="margin-top:20px">
-        <p><b>Our rule:</b> no performance number will appear on this page until it was measured on real hardware and the method and raw data are published alongside it.</p>
-      </div>
-    </div>
-  </section>
 
   <!-- REQUIREMENTS -->
   <section class="section-tight" id="requirements">
