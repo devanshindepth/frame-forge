@@ -510,7 +510,7 @@ def main():
     args = ap.parse_args()
     if args.quick: args.seeds, args.trials = 3, 5
     if args.data:
-        raise SystemExit("Real-sweep loader is validation step V3 (not implemented yet); see roadmap.html#validation.")
+        raise SystemExit("Real-sweep loader is validation step V3 (not implemented yet).")
 
     tasks = make_tasks(); print(f"{len(tasks)} tasks, {len(SNAMES)} settings")
     fns = {"t1": t1_sample_efficiency, "t2": t2_regret, "t3": t3_calibration, "t4": t4_noise,
