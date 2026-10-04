@@ -1,0 +1,153 @@
+{
+  "id": "b1_benchmark",
+  "name": "Black Myth: Wukong Benchmark Tool",
+  "short": "Unreal Engine 5 standalone benchmark with automated camera flythrough.",
+  "steam_app_id": 3132990,
+  "executables": ["b1-Win64-Shipping.exe", "b1_benchmark.exe", "b1.exe"],
+  "config": {
+    "format": "ini",
+    "paths": [
+      "{INSTALL}\\b1\\Saved\\Config\\Windows\\GameUserSettings.ini",
+      "{INSTALL}\\b1\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+      "{LOCALAPPDATA}\\b1\\Saved\\Config\\Windows\\GameUserSettings.ini",
+      "{LOCALAPPDATA}\\b1\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini"
+    ]
+  },
+  "benchmark": {
+    "mode": "guided",
+    "warmup_s": 5,
+    "where_to_test": "Click 'Start Benchmark' in the main menu to begin the flythrough. Press F9 once the benchmark scene starts."
+  },
+  "tips": [
+    "Black Myth: Wukong is heavy on Lumen global illumination, shadows, and foliage.",
+    "The benchmark tool has a fixed camera path, making it perfect for consistent frame-time measurements."
+  ],
+  "settings": [
+    {
+      "key": "ScalabilityGroups/sg.ViewDistanceQuality",
+      "label": "View distance",
+      "help": "How far away geometry and landscape are rendered in full detail.",
+      "options": [
+        {"label": "Low", "value": "0"},
+        {"label": "Medium", "value": "1"},
+        {"label": "High", "value": "2"},
+        {"label": "Very High", "value": "3"},
+        {"label": "Cinematic", "value": "4"}
+      ],
+      "cost": [0.01, 0.04, 0.08, 0.12, 0.16],
+      "quality": [2, 4, 6, 8, 9]
+    },
+    {
+      "key": "ScalabilityGroups/sg.ShadowQuality",
+      "label": "Shadows",
+      "help": "Sharpness, resolution, and distance of shadows. Usually a massive performance cost.",
+      "options": [
+        {"label": "Low", "value": "0"},
+        {"label": "Medium", "value": "1"},
+        {"label": "High", "value": "2"},
+        {"label": "Very High", "value": "3"},
+        {"label": "Cinematic", "value": "4"}
+      ],
+      "cost": [0.02, 0.08, 0.15, 0.24, 0.35],
+      "quality": [2, 5, 7, 8.5, 9.5]
+    },
+    {
+      "key": "ScalabilityGroups/sg.GlobalIlluminationQuality",
+      "label": "Indirect lighting (Lumen)",
+      "help": "Lumen dynamic global illumination. Calculates natural light bouncing off surfaces.",
+      "options": [
+        {"label": "Low", "value": "0"},
+        {"label": "Medium", "value": "1"},
+        {"label": "High", "value": "2"},
+        {"label": "Very High", "value": "3"},
+        {"label": "Cinematic", "value": "4"}
+      ],
+      "cost": [0.02, 0.07, 0.14, 0.22, 0.30],
+      "quality": [2, 5, 7, 8.5, 9.5]
+    },
+    {
+      "key": "ScalabilityGroups/sg.ReflectionQuality",
+      "label": "Reflections",
+      "help": "Lumen reflections on water and shiny materials.",
+      "options": [
+        {"label": "Low", "value": "0"},
+        {"label": "Medium", "value": "1"},
+        {"label": "High", "value": "2"},
+        {"label": "Very High", "value": "3"},
+        {"label": "Cinematic", "value": "4"}
+      ],
+      "cost": [0.01, 0.05, 0.10, 0.16, 0.22],
+      "quality": [2, 4, 6, 7.5, 8.5]
+    },
+    {
+      "key": "ScalabilityGroups/sg.FoliageQuality",
+      "label": "Grass & plants",
+      "help": "Density and draw distance of grass, trees, and bamboo forests.",
+      "options": [
+        {"label": "Low", "value": "0"},
+        {"label": "Medium", "value": "1"},
+        {"label": "High", "value": "2"},
+        {"label": "Very High", "value": "3"},
+        {"label": "Cinematic", "value": "4"}
+      ],
+      "cost": [0.01, 0.06, 0.12, 0.18, 0.25],
+      "quality": [2, 4.5, 7, 8.5, 9]
+    },
+    {
+      "key": "ScalabilityGroups/sg.PostProcessQuality",
+      "label": "Post-processing",
+      "help": "Motion blur, bloom, depth of field, and camera tone mapping.",
+      "options": [
+        {"label": "Low", "value": "0"},
+        {"label": "Medium", "value": "1"},
+        {"label": "High", "value": "2"},
+        {"label": "Very High", "value": "3"},
+        {"label": "Cinematic", "value": "4"}
+      ],
+      "cost": [0.01, 0.03, 0.06, 0.09, 0.12],
+      "quality": [2, 3.5, 4.5, 5, 5.5]
+    },
+    {
+      "key": "ScalabilityGroups/sg.TextureQuality",
+      "label": "Texture detail",
+      "help": "Sharpness and resolution of surfaces. Mostly impacts VRAM.",
+      "options": [
+        {"label": "Low", "value": "0"},
+        {"label": "Medium", "value": "1"},
+        {"label": "High", "value": "2"},
+        {"label": "Very High", "value": "3"},
+        {"label": "Cinematic", "value": "4"}
+      ],
+      "cost": [0.00, 0.01, 0.02, 0.03, 0.05],
+      "quality": [2, 5, 7.5, 9, 10]
+    },
+    {
+      "key": "ScalabilityGroups/sg.EffectsQuality",
+      "label": "Visual effects",
+      "help": "Sparks, fog volume, smoke, and magical spell particles.",
+      "options": [
+        {"label": "Low", "value": "0"},
+        {"label": "Medium", "value": "1"},
+        {"label": "High", "value": "2"},
+        {"label": "Very High", "value": "3"},
+        {"label": "Cinematic", "value": "4"}
+      ],
+      "cost": [0.01, 0.04, 0.07, 0.11, 0.15],
+      "quality": [2, 4, 5.5, 7, 8]
+    },
+    {
+      "key": "ScalabilityGroups/sg.AntiAliasingQuality",
+      "label": "Edge smoothing",
+      "help": "TSR / Anti-aliasing quality. Removes jagged edges and temporal shimmer.",
+      "options": [
+        {"label": "Low", "value": "0"},
+        {"label": "Medium", "value": "1"},
+        {"label": "High", "value": "2"},
+        {"label": "Very High", "value": "3"},
+        {"label": "Cinematic", "value": "4"}
+      ],
+      "cost": [0.00, 0.02, 0.04, 0.06, 0.08],
+      "quality": [2, 4, 5, 5.5, 6]
+    }
+  ]
+}

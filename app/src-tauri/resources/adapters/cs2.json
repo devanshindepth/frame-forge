@@ -1,0 +1,53 @@
+{
+  "id": "cs2",
+  "name": "Counter-Strike 2",
+  "short": "Competitive shooter. Every frame counts.",
+  "steam_app_id": 730,
+  "executables": ["cs2.exe"],
+  "config": {
+    "format": "kv",
+    "paths": ["{STEAM}\\userdata\\{STEAM_USER}\\730\\local\\cfg\\cs2_video.txt"]
+  },
+  "launch": { "steam_args": "" },
+  "benchmark": {
+    "mode": "guided",
+    "warmup_s": 5,
+    "where_to_test": "Play → Practice → Workshop map \"CS2 FPS Benchmark\" (or Dust II offline with bots). When the map has loaded, press F9 and let the flythrough run."
+  },
+  "tips": [
+    "CS2 is often limited by your processor, so some settings make no difference. FrameForge finds out which ones do on your PC.",
+    "Online matches are never touched. Testing happens in an offline map."
+  ],
+  "settings": [
+    { "key": "setting.videocfg_shadow_quality", "label": "Shadows", "help": "How sharp and detailed shadows are. In CS2 shadows can reveal enemies, so very low isn't always best.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"},{"label":"Very high","value":"3"}],
+      "cost": [0.00, 0.05, 0.10, 0.16], "quality": [2, 5, 7, 8] },
+    { "key": "setting.videocfg_dynamic_shadows", "label": "Moving shadows", "help": "Shadows from players and objects that move.",
+      "options": [{"label":"Off","value":"0"},{"label":"On","value":"1"}],
+      "cost": [0.00, 0.06], "quality": [2, 6] },
+    { "key": "setting.videocfg_texture_detail", "label": "Texture detail", "help": "Sharpness of surfaces. Mostly uses graphics memory, not speed.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"}],
+      "cost": [0.00, 0.01, 0.02], "quality": [3, 7, 9] },
+    { "key": "setting.r_texturefilteringquality", "label": "Texture sharpness at a distance", "help": "Keeps floors and walls crisp when seen at an angle.",
+      "options": [{"label":"Bilinear","value":"0"},{"label":"Trilinear","value":"1"},{"label":"2x","value":"2"},{"label":"4x","value":"3"},{"label":"8x","value":"4"},{"label":"16x","value":"5"}],
+      "cost": [0.00, 0.005, 0.01, 0.015, 0.02, 0.03], "quality": [1, 2, 3, 4, 4.5, 5] },
+    { "key": "setting.shaderquality", "label": "Lighting detail", "help": "Finer lighting on surfaces.",
+      "options": [{"label":"Low","value":"0"},{"label":"High","value":"1"}],
+      "cost": [0.00, 0.08], "quality": [3, 6] },
+    { "key": "setting.videocfg_particle_detail", "label": "Effects (smoke, sparks)", "help": "Detail of explosions, smoke and sparks.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"},{"label":"Very high","value":"3"}],
+      "cost": [0.00, 0.03, 0.06, 0.10], "quality": [2, 3.5, 4.5, 5] },
+    { "key": "setting.videocfg_ao_detail", "label": "Soft shadows in corners", "help": "Adds depth where objects meet.",
+      "options": [{"label":"Off","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"}],
+      "cost": [0.00, 0.05, 0.09], "quality": [1, 3, 4] },
+    { "key": "setting.msaa_samples", "label": "Edge smoothing", "help": "Removes jagged edges. Higher costs more speed.",
+      "options": [{"label":"None","value":"0"},{"label":"2x","value":"2"},{"label":"4x","value":"4"},{"label":"8x","value":"8"}],
+      "cost": [0.00, 0.07, 0.14, 0.26], "quality": [2, 5, 7, 7.5] },
+    { "key": "setting.videocfg_hdr_detail", "label": "Brightness range", "help": "Bright light and dark areas look more natural.",
+      "options": [{"label":"Performance","value":"3"},{"label":"Quality","value":"-1"}],
+      "cost": [0.00, 0.04], "quality": [2, 3] },
+    { "key": "setting.r_csgo_fsr_upsample", "label": "Render scaling (FSR)", "help": "Draws the game smaller and sharpens it back up. Faster but a little softer.",
+      "options": [{"label":"Off (sharpest)","value":"0"},{"label":"Ultra quality","value":"1"},{"label":"Quality","value":"2"},{"label":"Balanced","value":"3"}],
+      "cost": [0.30, 0.20, 0.13, 0.06], "quality": [8, 6.5, 5, 3.5] }
+  ]
+}

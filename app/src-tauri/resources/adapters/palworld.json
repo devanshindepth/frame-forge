@@ -1,0 +1,52 @@
+{
+  "id": "palworld",
+  "name": "Palworld",
+  "short": "Open world. Heavy on grass, shadows and view distance.",
+  "steam_app_id": 1623730,
+  "executables": ["Palworld-Win64-Shipping.exe", "Palworld.exe"],
+  "config": {
+    "format": "ini",
+    "paths": ["{LOCALAPPDATA}\\Pal\\Saved\\Config\\Windows\\GameUserSettings.ini"]
+  },
+  "benchmark": {
+    "mode": "guided",
+    "warmup_s": 8,
+    "where_to_test": "Load your world and stand at your base (or any busy spot with lots of grass and Pals). Press F9 and slowly turn the camera in a full circle, the same way every test."
+  },
+  "tips": [
+    "Grass and view distance are usually the biggest costs in Palworld.",
+    "Use the same spot and the same camera movement every test, so results are fair."
+  ],
+  "settings": [
+    { "key": "ScalabilityGroups/sg.ViewDistanceQuality", "label": "View distance", "help": "How far away objects and Pals are shown in detail.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"},{"label":"Epic","value":"3"}],
+      "cost": [0.02, 0.05, 0.09, 0.14], "quality": [3, 6, 8, 9] },
+    { "key": "ScalabilityGroups/sg.ShadowQuality", "label": "Shadows", "help": "Sharpness and reach of shadows. Often the biggest single cost.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"},{"label":"Epic","value":"3"}],
+      "cost": [0.02, 0.08, 0.15, 0.26], "quality": [3, 6.5, 8.5, 9] },
+    { "key": "ScalabilityGroups/sg.GlobalIlluminationQuality", "label": "Indirect lighting", "help": "Light bouncing off surfaces. Makes scenes feel natural.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"},{"label":"Epic","value":"3"}],
+      "cost": [0.01, 0.06, 0.12, 0.22], "quality": [3, 6, 7.5, 8] },
+    { "key": "ScalabilityGroups/sg.ReflectionQuality", "label": "Reflections", "help": "Reflections on water and shiny surfaces.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"},{"label":"Epic","value":"3"}],
+      "cost": [0.01, 0.04, 0.08, 0.13], "quality": [2, 4, 5, 5.5] },
+    { "key": "ScalabilityGroups/sg.PostProcessQuality", "label": "Post-processing", "help": "Glow, depth of field and other camera effects.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"},{"label":"Epic","value":"3"}],
+      "cost": [0.01, 0.03, 0.05, 0.08], "quality": [2, 3.5, 4.5, 5] },
+    { "key": "ScalabilityGroups/sg.TextureQuality", "label": "Texture detail", "help": "Sharpness of surfaces. Uses graphics memory more than speed.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"},{"label":"Epic","value":"3"}],
+      "cost": [0.00, 0.01, 0.02, 0.04], "quality": [3, 6.5, 9, 10] },
+    { "key": "ScalabilityGroups/sg.EffectsQuality", "label": "Effects", "help": "Fire, smoke, attacks and particles.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"},{"label":"Epic","value":"3"}],
+      "cost": [0.01, 0.03, 0.06, 0.10], "quality": [2, 4, 5, 5.5] },
+    { "key": "ScalabilityGroups/sg.FoliageQuality", "label": "Grass & plants", "help": "How much grass and how many plants are drawn.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"},{"label":"Epic","value":"3"}],
+      "cost": [0.02, 0.07, 0.14, 0.24], "quality": [3, 6, 7.5, 8] },
+    { "key": "ScalabilityGroups/sg.ShadingQuality", "label": "Surface lighting", "help": "Detail of light on materials like fur and metal.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"},{"label":"Epic","value":"3"}],
+      "cost": [0.01, 0.03, 0.06, 0.09], "quality": [2, 4, 5, 5.5] },
+    { "key": "ScalabilityGroups/sg.AntiAliasingQuality", "label": "Edge smoothing", "help": "Removes jagged and shimmering edges.",
+      "options": [{"label":"Low","value":"0"},{"label":"Medium","value":"1"},{"label":"High","value":"2"},{"label":"Epic","value":"3"}],
+      "cost": [0.00, 0.02, 0.04, 0.06], "quality": [2, 4, 5, 5.3] }
+  ]
+}
