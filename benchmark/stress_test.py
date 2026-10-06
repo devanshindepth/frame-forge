@@ -175,7 +175,7 @@ class TabPFNModel(Model):
         from tabpfn import TabPFNRegressor
         import torch
         dev = ("cuda" if torch.cuda.is_available() else "cpu") if device == "auto" else device
-        self.m = TabPFNRegressor(device=dev, n_estimators=n_estimators, ignore_pretraining_limits=True)
+        self.m = TabPFNRegressor(model_path="tabpfn-v2-regressor.ckpt", device=dev, n_estimators=n_estimators, ignore_pretraining_limits=True)
     def fit(self, X, y): self.m.fit(X, y); return self
     def predict(self, X):
         q16, q50, q84 = self.m.predict(X, output_type="quantiles", quantiles=[0.16, 0.5, 0.84])
@@ -198,6 +198,9 @@ class GPModel(Model):
         return m * self.sd + self.mu, s * self.sd
 
 
+def mape(y, p): return float(np.mean(np.abs((y - p) / np.maximum(np.abs(y), 1e-6))) * 100)
+
+
 def _tuned(make, space, X, y, trials):
     """Optuna-tuned model via 3-fold CV (only when n >= 12)."""
     import optuna
@@ -205,8 +208,12 @@ def _tuned(make, space, X, y, trials):
     optuna.logging.set_verbosity(optuna.logging.WARNING)
     if len(y) < 12 or trials == 0:
         return make({}).fit(X, y)
+    def _scorer(estimator, X_val, y_val):
+        p = estimator.predict(X_val)
+        if getattr(p, "ndim", 1) == 2: p = p[:, 0]
+        return -mape(y_val, p)
     def obj(t):
-        return cross_val_score(make(space(t)), X, y, cv=3, scoring="neg_mean_absolute_percentage_error").mean()
+        return cross_val_score(make(space(t)), X, y, cv=3, scoring=_scorer).mean()
     st = optuna.create_study(direction="maximize"); st.optimize(obj, n_trials=trials)
     return make(st.best_params).fit(X, y)
 
@@ -267,7 +274,7 @@ class MLPModel(Model):
         self.imp = SimpleImputer().fit(X); self.sc = StandardScaler().fit(self.imp.transform(X))
         self.mu, self.sd = y.mean(), y.std() + 1e-9
         Xs = self.sc.transform(self.imp.transform(X))
-        self.ens = [MLPRegressor((64, 64), alpha=1e-3, max_iter=2000, random_state=s).fit(Xs, (y - self.mu) / self.sd)
+        self.ens = [MLPRegressor(hidden_layer_sizes=(64, 64), alpha=1e-3, max_iter=2000, random_state=s).fit(Xs, (y - self.mu) / self.sd)
                     for s in range(5)]
         return self
     def predict(self, X):
@@ -276,7 +283,7 @@ class MLPModel(Model):
 
 
 MODEL_FACTORIES = {
-    "TabPFN": lambda a: TabPFNModel(device=a.device),
+    "TabPFN": lambda a: TabPFNModel(device=a.device, n_estimators=2 if a.quick else 8),
     "GP (Matérn-5/2)": lambda a: GPModel(),
     "CatBoost": lambda a: CatBoostModel(trials=a.trials),
     "XGBoost": lambda a: XGBModel(trials=a.trials),
@@ -315,9 +322,10 @@ def bo_run(task, model_name, args, budget, rng, floor=85.0, cv=0.04):
     def obj(m): return np.minimum(m["fps_avg"], hz) + 0.5 * np.minimum(m["fps_p1_low"], hz)
     def feas(m): return (m["quality"] >= floor) & (m["vram_peak_gb"] <= m["vram_cap"] * 0.94)
     X = sample_configs(rng, 4); trace = []
+    cand_size = 400 if args.quick else 2000
     for it in range(budget):
         if it >= 4:
-            cand = sample_configs(rng, 2000)
+            cand = sample_configs(rng, cand_size)
             Ym = {k: noisy(v, cv, rng) for k, v in task.true_metrics(X).items() if k != "vram_cap"}
             yo = obj(Ym); f = feas({**Ym, "vram_cap": task.true_metrics(X)["vram_cap"]})
             best = yo[f].max() if f.any() else yo.min()
@@ -333,6 +341,7 @@ def bo_run(task, model_name, args, budget, rng, floor=85.0, cv=0.04):
 
 
 def oracle_best(task, rng, floor=85.0, n=20000):
+    if hasattr(task, "quick") and task.quick: n = 4000
     X = sample_configs(rng, n); m = task.true_metrics(X)
     o = np.minimum(m["fps_avg"], 165) + 0.5 * np.minimum(m["fps_p1_low"], 165)
     f = (m["quality"] >= floor) & (m["vram_peak_gb"] <= m["vram_cap"] * 0.94)
@@ -340,6 +349,8 @@ def oracle_best(task, rng, floor=85.0, n=20000):
 
 
 def t2_regret(tasks, args, checkpoints=(5, 10, 15, 20, 30, 40, 60)):
+    if args.quick:
+        checkpoints = (5, 10, 15, 20)
     budget = max(checkpoints)
     bo_models = {"TabPFN": "TabPFN-BO", "GP (Matérn-5/2)": "GP-BO (BoTorch qEI)",
                  "Random Forest": "SMAC (RF)", "XGBoost": "XGB + bootstrap EI"}
@@ -476,6 +487,7 @@ def t9_compute(tasks, args, n=64, n_cand=5000):
 
 
 def t10_scale(tasks, args, sizes=(256, 1000, 4000, 10000)):
+    if args.quick: sizes = (256, 1000)
     models = [m for m in ("TabPFN", "CatBoost", "XGBoost") if m in args.models]
     out = {m: [] for m in models}
     pool = [t for t in tasks if t.game == "cp2077"]
@@ -493,11 +505,16 @@ def t10_scale(tasks, args, sizes=(256, 1000, 4000, 10000)):
             mdl = MODEL_FACTORIES[m](args)
             if m != "TabPFN" and hasattr(mdl, "trials"): mdl.trials = min(args.trials, 15)
             out[m].append(round(mape(yte, mdl.fit(X, y).predict(Xte)[0]), 2))
-        print(f"[T10] N={N} " + " ".join(f"{m}={out[m][-1]}" for m in models))
+        print(f"[T10] N={N} " + " ".join(f"{m}={out[m][-1]}" for m in models), flush=True)
     return {"x": [str(s) if s < 1000 else f"{s // 1000}k" for s in sizes], "series": out}
 
 
 def main():
+    import sys, os
+    try:
+        sys.stdout.reconfigure(line_buffering=True)
+    except Exception:
+        pass
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--seeds", type=int, default=10)
     ap.add_argument("--trials", type=int, default=50, help="Optuna trials for GBDT tuning")
@@ -512,16 +529,30 @@ def main():
     if args.data:
         raise SystemExit("Real-sweep loader is validation step V3 (not implemented yet).")
 
-    tasks = make_tasks(); print(f"{len(tasks)} tasks, {len(SNAMES)} settings")
+    tasks = make_tasks(); print(f"{len(tasks)} tasks, {len(SNAMES)} settings", flush=True)
     fns = {"t1": t1_sample_efficiency, "t2": t2_regret, "t3": t3_calibration, "t4": t4_noise,
            "t5": t5_cold_start, "t6": t6_ranking, "t7": t7_missing, "t9": t9_compute, "t10": t10_scale}
     results = {}
+    if os.path.exists(args.json):
+        try:
+            with open(args.json) as f:
+                saved = json.load(f)
+                if isinstance(saved.get("results"), dict):
+                    results = saved["results"]
+        except Exception:
+            pass
+
     for k in args.tests:
-        t0 = time.time(); results[k] = fns[k](tasks, args); print(f"  {k} done in {time.time() - t0:.0f}s")
-    payload = {"provenance": "synthetic-simulator", "date": str(date.today()), "seeds": args.seeds,
-               "note": "Toy frame-time model; not real-game evidence.", "results": results}
-    with open(args.json, "w") as f: json.dump(payload, f, indent=2)
-    print(f"wrote {args.json} (synthetic)")
+        if k in results and k == "t1":
+            print(f"  {k} already completed, reusing previous result.", flush=True)
+            continue
+        t0 = time.time()
+        results[k] = fns[k](tasks, args)
+        print(f"  {k} done in {time.time() - t0:.0f}s", flush=True)
+        payload = {"provenance": "synthetic-simulator", "date": str(date.today()), "seeds": args.seeds,
+                   "note": "Toy frame-time model; not real-game evidence.", "results": results}
+        with open(args.json, "w") as f: json.dump(payload, f, indent=2)
+    print(f"wrote {args.json} (synthetic)", flush=True)
 
 
 if __name__ == "__main__":
